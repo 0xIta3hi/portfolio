@@ -6,6 +6,7 @@ import { GlitchContainer } from '@/components/GlitchContainer';
 import { BreachToggle } from '@/components/BreachToggle';
 import { ScanlineOverlay } from '@/components/ScanlineOverlay';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Home() {
   const { isBreached } = useBreachMode();
@@ -55,103 +56,135 @@ export default function Home() {
       <BreachToggle />
 
       {/* Hero Section */}
-      <section
+      <header
         className={`relative flex items-center justify-center min-h-screen px-4 ${
           isBreached ? 'border-b border-[#00FF41]/30' : 'border-b border-gray-300'
         }`}
       >
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Terminal Prefix */}
-          <div
-            className={`text-sm font-mono ${
-              isBreached
-                ? 'text-[#00FF41]/70'
-                : 'text-[#1F2937]/70'
-            }`}
-          >
-            {isBreached ? '┌──(0xIta3hi@base)-[~]' : '> portfolio'}
-          </div>
-
-          {/* Title */}
-          <GlitchContainer className="mb-6">
-            <TextDecrypt
-              textNormal="Aryan Bharadiya"
-              textHacker="0xIta3hi"
-              as="h1"
-              className={`text-6xl font-bold tracking-tight transition-all duration-300 ${
+          {/* Terminal Prefix - Hidden from display but for hacker mode */}
+          {isBreached && (
+            <div
+              className={`text-sm font-mono ${
                 isBreached
-                  ? 'font-mono drop-shadow-[0_0_10px_#00FF41]'
-                  : 'font-sans'
+                  ? 'text-[#00FF41]/70'
+                  : 'text-[#1F2937]/70'
               }`}
-            />
+              aria-hidden="true"
+            >
+              ┌──(0xIta3hi@base)-[~]
+            </div>
+          )}
+
+          {/* Full Name - H1 for ATS */}
+          <GlitchContainer className="mb-6">
+            {!isBreached ? (
+              <h1
+                className={`text-6xl font-bold tracking-tight transition-all duration-300 font-sans`}
+              >
+                Aryan Bharadiya
+              </h1>
+            ) : (
+              <TextDecrypt
+                textNormal="Aryan Bharadiya"
+                textHacker="0xIta3hi"
+                as="h1"
+                className={`text-6xl font-bold tracking-tight transition-all duration-300 ${
+                  isBreached
+                    ? 'font-mono drop-shadow-[0_0_10px_#00FF41]'
+                    : 'font-sans'
+                }`}
+              />
+            )}
           </GlitchContainer>
 
-          {/* Subtitle */}
-          <TextDecrypt
-            textNormal="Cloud Security Researcher | AI Architect"
-            textHacker="Cloud Security Researcher | Exploit Developer"
-            as="p"
-            className={`text-2xl transition-all duration-300 ${
-              isBreached
-                ? 'font-mono opacity-90'
-                : 'opacity-70'
-            }`}
-          />
+          {/* Professional Title */}
+          <div className={`text-2xl transition-all duration-300 ${
+            isBreached
+              ? 'font-mono opacity-90'
+              : 'opacity-70'
+          }`}>
+            {isBreached ? (
+              <TextDecrypt
+                textNormal="Cloud Security Researcher | AI Architect"
+                textHacker="Cloud Security Researcher | Exploit Developer"
+                as="p"
+              />
+            ) : (
+              <h2>Cloud Security Researcher &amp; AI Architect</h2>
+            )}
+          </div>
 
-          {/* Description */}
+          {/* Professional Summary */}
           <div
             className={`max-w-2xl mx-auto space-y-4 transition-all duration-300 ${
               isBreached ? 'font-mono text-sm' : 'font-sans text-lg'
             }`}
           >
-            <TextDecrypt
-              textNormal="I'm a passionate developer creating elegant, performant web applications. Specialized in modern React, Next.js, and cloud technologies."
-              textHacker="I hunt vulnerabilities in production systems. Expertise in penetration testing, exploit development, and security auditing across distributed infrastructure."
-              as="p"
-              className={`leading-relaxed ${
-                isBreached ? 'opacity-80' : 'opacity-60'
-              }`}
-            />
+            {isBreached ? (
+              <TextDecrypt
+                textNormal="I'm a passionate developer creating elegant, performant web applications. Specialized in modern React, Next.js, and cloud technologies."
+                textHacker="I hunt vulnerabilities in production systems. Expertise in penetration testing, exploit development, and security auditing across distributed infrastructure."
+                as="p"
+                className={`leading-relaxed ${
+                  isBreached ? 'opacity-80' : 'opacity-60'
+                }`}
+              />
+            ) : (
+              <>
+                <p className="leading-relaxed opacity-70">
+                  Cloud security researcher and AI architect with expertise in building secure, scalable systems and intelligent agent architectures. Passionate about breaking into secure systems, understanding vulnerabilities, and architecting AI-driven solutions.
+                </p>
+                <p className="leading-relaxed opacity-70">
+                  Currently working on Neo4j-based memory systems for NPCs, enterprise AI middleware, and cloud security projects across AWS, Azure, and GCP.
+                </p>
+              </>
+            )}
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex gap-4 justify-center pt-8">
-            <button
-              className={`px-8 py-3 font-bold transition-all duration-300 rounded border-2 ${
+          <nav className="flex gap-4 justify-center pt-8" aria-label="Call to action">
+            <a
+              href="https://github.com/0xIta3hi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`px-8 py-3 font-bold transition-all duration-300 rounded border-2 inline-block ${
                 isBreached
                   ? 'border-[#00FF41] text-[#00FF41] bg-black hover:bg-[#00FF41] hover:text-black'
                   : 'border-gray-900 text-gray-900 bg-white hover:bg-gray-900 hover:text-white'
               }`}
             >
-              {isBreached ? '[ ACCESS EXPLOITS ]' : '[ View Portfolio ]'}
-            </button>
-            <button
-              className={`px-8 py-3 font-bold transition-all duration-300 rounded border-2 ${
+              {isBreached ? '[ ACCESS EXPLOITS ]' : 'View GitHub'}
+            </a>
+            <a
+              href="mailto:aryanbharadiyak2006@gmail.com"
+              className={`px-8 py-3 font-bold transition-all duration-300 rounded border-2 inline-block ${
                 isBreached
                   ? 'border-[#00FF41]/50 text-[#00FF41]/70 bg-black/50 hover:border-[#00FF41] hover:text-[#00FF41]'
                   : 'border-gray-400 text-gray-600 bg-gray-50 hover:bg-gray-100'
               }`}
             >
-              {isBreached ? '[ CONTACT ]' : '[ Get in Touch ]'}
-            </button>
-          </div>
+              {isBreached ? '[ CONTACT ]' : 'Contact Me'}
+            </a>
+          </nav>
         </div>
-      </section>
+      </header>
 
-      {/* Featured Projects/Exploits Section */}
-      <section className="py-20 px-4">
+      {/* Featured Projects Section */}
+      <section className="py-20 px-4" aria-labelledby="projects-heading">
         <div className="max-w-6xl mx-auto">
           <h2
+            id="projects-heading"
             className={`text-4xl font-bold mb-12 ${
               isBreached ? 'font-mono drop-shadow-[0_0_5px_#00FF41]' : ''
             }`}
           >
-            {isBreached ? '[ ACTIVE PROJECTS ]' : 'Featured Work'}
+            {isBreached ? '[ ACTIVE PROJECTS ]' : 'Featured Projects'}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project, idx) => (
-              <GlitchContainer
+              <article
                 key={idx}
                 className={`p-6 rounded transition-all duration-300 ${
                   isBreached
@@ -159,13 +192,15 @@ export default function Home() {
                     : 'bg-white border border-gray-200 hover:border-gray-400'
                 }`}
               >
-                <h3 className={`text-2xl font-bold mb-3 ${isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'}`}>
-                  {project.name}
-                </h3>
-                <p className={`text-lg mb-4 ${isBreached ? 'font-mono text-sm opacity-80' : 'opacity-70'}`}>
-                  {isBreached ? project.hackerDesc : project.normalDesc}
-                </p>
-                <div className="flex flex-wrap gap-2">
+                <GlitchContainer>
+                  <h3 className={`text-2xl font-bold mb-3 ${isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'}`}>
+                    {project.name}
+                  </h3>
+                  <p className={`text-lg mb-4 ${isBreached ? 'font-mono text-sm opacity-80' : 'opacity-70'}`}>
+                    {isBreached ? project.hackerDesc : project.normalDesc}
+                  </p>
+                </GlitchContainer>
+                <div className="flex flex-wrap gap-2" aria-label="Technologies">
                   {project.stack.map((tech, i) => (
                     <span
                       key={i}
@@ -179,7 +214,7 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-              </GlitchContainer>
+              </article>
             ))}
           </div>
         </div>
@@ -190,14 +225,16 @@ export default function Home() {
         className={`py-20 px-4 ${
           isBreached ? 'border-t border-[#00FF41]/20' : 'border-t border-gray-300'
         }`}
+        aria-labelledby="skills-heading"
       >
         <div className="max-w-6xl mx-auto">
           <h2
+            id="skills-heading"
             className={`text-4xl font-bold mb-12 ${
               isBreached ? 'font-mono drop-shadow-[0_0_5px_#00FF41]' : ''
             }`}
           >
-            {isBreached ? '[ ARSENAL ]' : 'Skills & Expertise'}
+            {isBreached ? '[ ARSENAL ]' : 'Technical Skills'}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -208,33 +245,16 @@ export default function Home() {
                   isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'
                 }`}
               >
-                {isBreached ? 'Security & Cloud' : 'Cloud & Security'}
+                Cloud &amp; Security
               </h3>
-              <div className="space-y-2">
+              <dl className="space-y-3">
                 {skills.security.map((skill, i) => (
                   <div key={i} className={isBreached ? 'font-mono text-sm' : ''}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium">{skill}</span>
-                    </div>
-                    <div
-                      className={`h-2 rounded overflow-hidden ${
-                        isBreached
-                          ? 'bg-[#00FF41]/20'
-                          : 'bg-gray-200'
-                      }`}
-                    >
-                      <div
-                        className={`h-full ${
-                          isBreached
-                            ? 'bg-[#00FF41]'
-                            : 'bg-gray-900'
-                        }`}
-                        style={{ width: '90%' }}
-                      />
-                    </div>
+                    <dt className="text-sm font-medium mb-1">{skill}</dt>
+                    <dd className="sr-only">Advanced</dd>
                   </div>
                 ))}
-              </div>
+              </dl>
             </div>
 
             {/* AI & Development */}
@@ -244,33 +264,16 @@ export default function Home() {
                   isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'
                 }`}
               >
-                AI & Development
+                AI &amp; Development
               </h3>
-              <div className="space-y-2">
+              <dl className="space-y-3">
                 {skills.ai.map((skill, i) => (
                   <div key={i} className={isBreached ? 'font-mono text-sm' : ''}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium">{skill}</span>
-                    </div>
-                    <div
-                      className={`h-2 rounded overflow-hidden ${
-                        isBreached
-                          ? 'bg-[#00FF41]/20'
-                          : 'bg-gray-200'
-                      }`}
-                    >
-                      <div
-                        className={`h-full ${
-                          isBreached
-                            ? 'bg-[#00FF41]'
-                            : 'bg-gray-900'
-                        }`}
-                        style={{ width: '85%' }}
-                      />
-                    </div>
+                    <dt className="text-sm font-medium mb-1">{skill}</dt>
+                    <dd className="sr-only">Advanced</dd>
                   </div>
                 ))}
-              </div>
+              </dl>
             </div>
 
             {/* Offensive Tools */}
@@ -280,40 +283,23 @@ export default function Home() {
                   isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'
                 }`}
               >
-                Offensive Tools
+                Security Tools
               </h3>
-              <div className="space-y-2">
+              <dl className="space-y-3">
                 {skills.tools.map((skill, i) => (
                   <div key={i} className={isBreached ? 'font-mono text-sm' : ''}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-sm font-medium">{skill}</span>
-                    </div>
-                    <div
-                      className={`h-2 rounded overflow-hidden ${
-                        isBreached
-                          ? 'bg-[#00FF41]/20'
-                          : 'bg-gray-200'
-                      }`}
-                    >
-                      <div
-                        className={`h-full ${
-                          isBreached
-                            ? 'bg-[#00FF41]'
-                            : 'bg-gray-900'
-                        }`}
-                        style={{ width: '88%' }}
-                      />
-                    </div>
+                    <dt className="text-sm font-medium mb-1">{skill}</dt>
+                    <dd className="sr-only">Advanced</dd>
                   </div>
                 ))}
-              </div>
+              </dl>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section
+      {/* Contact/Footer Section */}
+      <footer
         className={`py-20 px-4 ${
           isBreached ? 'border-t border-[#00FF41]/20' : 'border-t border-gray-300'
         }`}
@@ -324,13 +310,14 @@ export default function Home() {
               isBreached ? 'font-mono drop-shadow-[0_0_5px_#00FF41]' : ''
             }`}
           >
-            {isBreached ? '[ CONNECT ]' : 'Get In Touch'}
+            {isBreached ? '[ CONNECT ]' : 'Connect'}
           </h2>
 
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link
+          <nav className="flex gap-4 justify-center flex-wrap mb-8" aria-label="Social links">
+            <a
               href="https://twitter.com/0xIta3hi"
               target="_blank"
+              rel="noopener noreferrer"
               className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
                 isBreached
                   ? 'border-[#00FF41]/50 text-[#00FF41] hover:border-[#00FF41] hover:bg-[#00FF41]/10'
@@ -338,10 +325,11 @@ export default function Home() {
               }`}
             >
               {isBreached ? '[ Twitter ]' : 'Twitter'}
-            </Link>
-            <Link
+            </a>
+            <a
               href="https://linkedin.com/in/aryan-bharadiya"
               target="_blank"
+              rel="noopener noreferrer"
               className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
                 isBreached
                   ? 'border-[#00FF41]/50 text-[#00FF41] hover:border-[#00FF41] hover:bg-[#00FF41]/10'
@@ -349,10 +337,11 @@ export default function Home() {
               }`}
             >
               {isBreached ? '[ LinkedIn ]' : 'LinkedIn'}
-            </Link>
-            <Link
+            </a>
+            <a
               href="https://github.com/0xIta3hi"
               target="_blank"
+              rel="noopener noreferrer"
               className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
                 isBreached
                   ? 'border-[#00FF41]/50 text-[#00FF41] hover:border-[#00FF41] hover:bg-[#00FF41]/10'
@@ -360,8 +349,8 @@ export default function Home() {
               }`}
             >
               {isBreached ? '[ GitHub ]' : 'GitHub'}
-            </Link>
-            <Link
+            </a>
+            <a
               href="mailto:aryanbharadiyak2006@gmail.com"
               className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
                 isBreached
@@ -370,20 +359,20 @@ export default function Home() {
               }`}
             >
               {isBreached ? '[ Email ]' : 'Email'}
-            </Link>
-          </div>
+            </a>
+          </nav>
 
           <p
-            className={`mt-12 text-sm font-mono ${
+            className={`text-sm font-mono ${
               isBreached ? 'text-[#00FF41]/70' : 'text-gray-600'
             }`}
           >
             {isBreached
               ? '└─$ Breaking clouds by day, building sentient NPCs by night'
-              : 'Built with passion, coffee, and curiosity'}
+              : '© 2026 Aryan Bharadiya. All rights reserved.'}
           </p>
         </div>
-      </section>
+      </footer>
     </main>
   );
 }
