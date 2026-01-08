@@ -13,12 +13,12 @@ export function ScanlineOverlay() {
       style={{
         backgroundImage: `repeating-linear-gradient(
           0deg,
-          rgba(0, 0, 0, 0.15) 0px,
-          rgba(0, 0, 0, 0.15) 1px,
+          rgba(0, 0, 0, 0.05) 0px,
+          rgba(0, 0, 0, 0.05) 1px,
           transparent 1px,
           transparent 2px
         )`,
-        animation: 'scanlines 8s linear infinite',
+        animation: 'scanlines 15s linear infinite',
       }}
     >
       <style jsx>{`
@@ -27,7 +27,7 @@ export function ScanlineOverlay() {
             transform: translateY(0);
           }
           100% {
-            transform: translateY(10px);
+            transform: translateY(3px);
           }
         }
       `}</style>
