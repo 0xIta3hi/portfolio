@@ -1,0 +1,389 @@
+'use client';
+
+import { useBreachMode } from '@/lib/useBreachMode';
+import { TextDecrypt } from '@/components/TextDecrypt';
+import { GlitchContainer } from '@/components/GlitchContainer';
+import { BreachToggle } from '@/components/BreachToggle';
+import { ScanlineOverlay } from '@/components/ScanlineOverlay';
+import Link from 'next/link';
+
+export default function Home() {
+  const { isBreached } = useBreachMode();
+
+  const projects = [
+    {
+      name: 'MemGraph',
+      normalDesc: 'Neo4j + LLM Memory Architecture',
+      hackerDesc: 'True long-term NPC memory with relationship graphs',
+      stack: ['Neo4j', 'LangChain', 'FastAPI', 'React'],
+    },
+    {
+      name: 'AI NPC Middleware',
+      normalDesc: 'Enterprise SDK for Game Studios',
+      hackerDesc: 'Unity/Unreal integration with <1 hour setup',
+      stack: ['TypeScript', 'C++', 'gRPC', 'Docker'],
+    },
+    {
+      name: 'GhostGate',
+      normalDesc: 'Multi-Service Honeypot',
+      hackerDesc: 'Complete C++ implementation with attack pattern analysis',
+      stack: ['C++', 'Networking', 'Security'],
+    },
+    {
+      name: 'Cloud Purple Team Labs',
+      normalDesc: '10 Production Security Projects',
+      hackerDesc: 'Attack path simulation & CSPM tool development',
+      stack: ['Python', 'Terraform', 'Kubernetes', 'Go'],
+    },
+  ];
+
+  const skills = {
+    security: ['Python', 'Go', 'Bash', 'AWS', 'Kubernetes', 'Docker'],
+    ai: ['TypeScript', 'React/Next', 'FastAPI', 'LangChain', 'Neo4j'],
+    tools: ['Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'OWASP'],
+  };
+
+  return (
+    <main
+      className={`min-h-screen transition-colors duration-500 ${
+        isBreached
+          ? 'bg-black text-[#00FF41]'
+          : 'bg-[#F3F4F6] text-[#1F2937]'
+      }`}
+    >
+      <ScanlineOverlay />
+      <BreachToggle />
+
+      {/* Hero Section */}
+      <section
+        className={`relative flex items-center justify-center min-h-screen px-4 ${
+          isBreached ? 'border-b border-[#00FF41]/30' : 'border-b border-gray-300'
+        }`}
+      >
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* Terminal Prefix */}
+          <div
+            className={`text-sm font-mono ${
+              isBreached
+                ? 'text-[#00FF41]/70'
+                : 'text-[#1F2937]/70'
+            }`}
+          >
+            {isBreached ? '┌──(0xIta3hi@base)-[~]' : '> portfolio'}
+          </div>
+
+          {/* Title */}
+          <GlitchContainer className="mb-6">
+            <TextDecrypt
+              textNormal="Aryan Bharadiya"
+              textHacker="0xIta3hi"
+              as="h1"
+              className={`text-6xl font-bold tracking-tight transition-all duration-300 ${
+                isBreached
+                  ? 'font-mono drop-shadow-[0_0_10px_#00FF41]'
+                  : 'font-sans'
+              }`}
+            />
+          </GlitchContainer>
+
+          {/* Subtitle */}
+          <TextDecrypt
+            textNormal="Cloud Security Researcher | AI Architect"
+            textHacker="Cloud Security Researcher | Exploit Developer"
+            as="p"
+            className={`text-2xl transition-all duration-300 ${
+              isBreached
+                ? 'font-mono opacity-90'
+                : 'opacity-70'
+            }`}
+          />
+
+          {/* Description */}
+          <div
+            className={`max-w-2xl mx-auto space-y-4 transition-all duration-300 ${
+              isBreached ? 'font-mono text-sm' : 'font-sans text-lg'
+            }`}
+          >
+            <TextDecrypt
+              textNormal="I'm a passionate developer creating elegant, performant web applications. Specialized in modern React, Next.js, and cloud technologies."
+              textHacker="I hunt vulnerabilities in production systems. Expertise in penetration testing, exploit development, and security auditing across distributed infrastructure."
+              as="p"
+              className={`leading-relaxed ${
+                isBreached ? 'opacity-80' : 'opacity-60'
+              }`}
+            />
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex gap-4 justify-center pt-8">
+            <button
+              className={`px-8 py-3 font-bold transition-all duration-300 rounded border-2 ${
+                isBreached
+                  ? 'border-[#00FF41] text-[#00FF41] bg-black hover:bg-[#00FF41] hover:text-black'
+                  : 'border-gray-900 text-gray-900 bg-white hover:bg-gray-900 hover:text-white'
+              }`}
+            >
+              {isBreached ? '[ ACCESS EXPLOITS ]' : '[ View Portfolio ]'}
+            </button>
+            <button
+              className={`px-8 py-3 font-bold transition-all duration-300 rounded border-2 ${
+                isBreached
+                  ? 'border-[#00FF41]/50 text-[#00FF41]/70 bg-black/50 hover:border-[#00FF41] hover:text-[#00FF41]'
+                  : 'border-gray-400 text-gray-600 bg-gray-50 hover:bg-gray-100'
+              }`}
+            >
+              {isBreached ? '[ CONTACT ]' : '[ Get in Touch ]'}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects/Exploits Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2
+            className={`text-4xl font-bold mb-12 ${
+              isBreached ? 'font-mono drop-shadow-[0_0_5px_#00FF41]' : ''
+            }`}
+          >
+            {isBreached ? '[ ACTIVE PROJECTS ]' : 'Featured Work'}
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map((project, idx) => (
+              <GlitchContainer
+                key={idx}
+                className={`p-6 rounded transition-all duration-300 ${
+                  isBreached
+                    ? 'bg-black/50 border border-[#00FF41]/30 hover:border-[#00FF41]/60'
+                    : 'bg-white border border-gray-200 hover:border-gray-400'
+                }`}
+              >
+                <h3 className={`text-2xl font-bold mb-3 ${isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'}`}>
+                  {project.name}
+                </h3>
+                <p className={`text-lg mb-4 ${isBreached ? 'font-mono text-sm opacity-80' : 'opacity-70'}`}>
+                  {isBreached ? project.hackerDesc : project.normalDesc}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.stack.map((tech, i) => (
+                    <span
+                      key={i}
+                      className={`text-xs px-3 py-1 rounded transition-all duration-300 ${
+                        isBreached
+                          ? 'bg-[#00FF41]/10 text-[#00FF41] border border-[#00FF41]/30'
+                          : 'bg-gray-100 text-gray-700 border border-gray-300'
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </GlitchContainer>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section
+        className={`py-20 px-4 ${
+          isBreached ? 'border-t border-[#00FF41]/20' : 'border-t border-gray-300'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto">
+          <h2
+            className={`text-4xl font-bold mb-12 ${
+              isBreached ? 'font-mono drop-shadow-[0_0_5px_#00FF41]' : ''
+            }`}
+          >
+            {isBreached ? '[ ARSENAL ]' : 'Skills & Expertise'}
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Security & Cloud */}
+            <div>
+              <h3
+                className={`text-xl font-bold mb-4 ${
+                  isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'
+                }`}
+              >
+                {isBreached ? 'Security & Cloud' : 'Cloud & Security'}
+              </h3>
+              <div className="space-y-2">
+                {skills.security.map((skill, i) => (
+                  <div key={i} className={isBreached ? 'font-mono text-sm' : ''}>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm font-medium">{skill}</span>
+                    </div>
+                    <div
+                      className={`h-2 rounded overflow-hidden ${
+                        isBreached
+                          ? 'bg-[#00FF41]/20'
+                          : 'bg-gray-200'
+                      }`}
+                    >
+                      <div
+                        className={`h-full ${
+                          isBreached
+                            ? 'bg-[#00FF41]'
+                            : 'bg-gray-900'
+                        }`}
+                        style={{ width: '90%' }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* AI & Development */}
+            <div>
+              <h3
+                className={`text-xl font-bold mb-4 ${
+                  isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'
+                }`}
+              >
+                AI & Development
+              </h3>
+              <div className="space-y-2">
+                {skills.ai.map((skill, i) => (
+                  <div key={i} className={isBreached ? 'font-mono text-sm' : ''}>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm font-medium">{skill}</span>
+                    </div>
+                    <div
+                      className={`h-2 rounded overflow-hidden ${
+                        isBreached
+                          ? 'bg-[#00FF41]/20'
+                          : 'bg-gray-200'
+                      }`}
+                    >
+                      <div
+                        className={`h-full ${
+                          isBreached
+                            ? 'bg-[#00FF41]'
+                            : 'bg-gray-900'
+                        }`}
+                        style={{ width: '85%' }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Offensive Tools */}
+            <div>
+              <h3
+                className={`text-xl font-bold mb-4 ${
+                  isBreached ? 'font-mono text-[#00FF41]' : 'text-gray-900'
+                }`}
+              >
+                Offensive Tools
+              </h3>
+              <div className="space-y-2">
+                {skills.tools.map((skill, i) => (
+                  <div key={i} className={isBreached ? 'font-mono text-sm' : ''}>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm font-medium">{skill}</span>
+                    </div>
+                    <div
+                      className={`h-2 rounded overflow-hidden ${
+                        isBreached
+                          ? 'bg-[#00FF41]/20'
+                          : 'bg-gray-200'
+                      }`}
+                    >
+                      <div
+                        className={`h-full ${
+                          isBreached
+                            ? 'bg-[#00FF41]'
+                            : 'bg-gray-900'
+                        }`}
+                        style={{ width: '88%' }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section
+        className={`py-20 px-4 ${
+          isBreached ? 'border-t border-[#00FF41]/20' : 'border-t border-gray-300'
+        }`}
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <h2
+            className={`text-4xl font-bold mb-8 ${
+              isBreached ? 'font-mono drop-shadow-[0_0_5px_#00FF41]' : ''
+            }`}
+          >
+            {isBreached ? '[ CONNECT ]' : 'Get In Touch'}
+          </h2>
+
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link
+              href="https://twitter.com/0xIta3hi"
+              target="_blank"
+              className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
+                isBreached
+                  ? 'border-[#00FF41]/50 text-[#00FF41] hover:border-[#00FF41] hover:bg-[#00FF41]/10'
+                  : 'border-gray-400 text-gray-700 hover:border-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {isBreached ? '[ Twitter ]' : 'Twitter'}
+            </Link>
+            <Link
+              href="https://linkedin.com/in/aryan-bharadiya"
+              target="_blank"
+              className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
+                isBreached
+                  ? 'border-[#00FF41]/50 text-[#00FF41] hover:border-[#00FF41] hover:bg-[#00FF41]/10'
+                  : 'border-gray-400 text-gray-700 hover:border-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {isBreached ? '[ LinkedIn ]' : 'LinkedIn'}
+            </Link>
+            <Link
+              href="https://github.com/0xIta3hi"
+              target="_blank"
+              className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
+                isBreached
+                  ? 'border-[#00FF41]/50 text-[#00FF41] hover:border-[#00FF41] hover:bg-[#00FF41]/10'
+                  : 'border-gray-400 text-gray-700 hover:border-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {isBreached ? '[ GitHub ]' : 'GitHub'}
+            </Link>
+            <Link
+              href="mailto:aryanbharadiyak2006@gmail.com"
+              className={`px-6 py-2 font-bold transition-all duration-300 rounded border ${
+                isBreached
+                  ? 'border-[#00FF41]/50 text-[#00FF41] hover:border-[#00FF41] hover:bg-[#00FF41]/10'
+                  : 'border-gray-400 text-gray-700 hover:border-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {isBreached ? '[ Email ]' : 'Email'}
+            </Link>
+          </div>
+
+          <p
+            className={`mt-12 text-sm font-mono ${
+              isBreached ? 'text-[#00FF41]/70' : 'text-gray-600'
+            }`}
+          >
+            {isBreached
+              ? '└─$ Breaking clouds by day, building sentient NPCs by night'
+              : 'Built with passion, coffee, and curiosity'}
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+}
