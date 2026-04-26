@@ -11,7 +11,9 @@ export default function Input({ command, onSubmit }) {
     setCommand("");
     return onSubmit(_command);
   };
+ 
 
+  
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <label htmlFor="command" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
