@@ -141,7 +141,7 @@ FFmpeg, MoviePy
   error: (input) =>
     `<div class="help-command">sh: Unknown command: ${input}</div><div class="help-command">See \`help\` for info`,
   blog: () => {
-    window.open("https://medium.com/@aryanbharadiyak2006/", "_blank");
+    window.location.href = "/blogs";
     return "";
   },
   youtube: () => {

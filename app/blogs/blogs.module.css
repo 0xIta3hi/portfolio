@@ -1,0 +1,305 @@
+.blogsContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 48px;
+  color: var(--primary);
+  text-shadow: 0 0 20px var(--glow-color);
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: var(--secondary);
+  font-size: 16px;
+}
+
+.searchContainer {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 16px;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 15px var(--shadow-color);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.searchInput::placeholder {
+  color: rgba(0, 255, 136, 0.5);
+}
+
+.postsList {
+  display: grid;
+  gap: 24px;
+}
+
+.postCard {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.postCard::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    var(--text-color),
+    var(--secondary)
+  );
+  transition: width 0.3s ease;
+}
+
+.postCard:hover {
+  border-color: var(--secondary);
+  background: rgba(0, 0, 0, 0.35);
+  transform: translateX(5px);
+  box-shadow: 0 0 20px var(--shadow-color);
+}
+
+.postCard:hover::before {
+  width: 6px;
+}
+
+.postTitle {
+  font-size: 24px;
+  color: var(--primary);
+  margin: 0 0 12px 0;
+  transition: color 0.3s ease;
+}
+
+.postCard:hover .postTitle {
+  color: var(--secondary);
+  text-shadow: 0 0 10px var(--glow-color);
+}
+
+.postDate {
+  color: var(--secondary);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.postPreview {
+  color: var(--text-color);
+  opacity: 0.8;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.noResults {
+  text-align: center;
+  color: var(--secondary);
+  padding: 40px 20px;
+  font-size: 18px;
+}
+
+/* Blog Post Page Styles */
+.postContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.postHeader {
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.postHeader h1 {
+  font-size: 48px;
+  color: var(--primary);
+  text-shadow: 0 0 20px var(--glow-color);
+  margin: 0 0 10px 0;
+}
+
+.postMeta {
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+.postContent {
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+/* Markdown Styling */
+.postContent h2 {
+  color: var(--primary);
+  font-size: 32px;
+  margin: 40px 0 20px 0;
+  text-shadow: 0 0 15px var(--glow-color);
+  border-left: 4px solid var(--secondary);
+  padding-left: 16px;
+}
+
+.postContent h3 {
+  color: var(--secondary);
+  font-size: 24px;
+  margin: 30px 0 15px 0;
+}
+
+.postContent p {
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+.postContent ul,
+.postContent ol {
+  margin: 16px 0;
+  padding-left: 24px;
+  color: var(--text-color);
+}
+
+.postContent li {
+  margin-bottom: 8px;
+}
+
+.postContent code {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+}
+
+.postContent pre {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  overflow-x: auto;
+  border-left: 4px solid var(--text-color);
+}
+
+.postContent pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.postContent blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 16px;
+  margin: 20px 0;
+  color: var(--secondary);
+  font-style: italic;
+}
+
+.postContent a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.postContent a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  transition: width 0.3s ease;
+}
+
+.postContent a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+}
+
+.postContent a:hover::after {
+  width: 100%;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 30px;
+  padding: 10px 0;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.backLink:hover {
+  border-bottom-color: var(--secondary);
+  padding-left: 5px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .blogsContainer,
+  .postContainer {
+    padding: 20px 16px;
+  }
+
+  .header h1,
+  .postHeader h1 {
+    font-size: 32px;
+  }
+
+  .postTitle {
+    font-size: 20px;
+  }
+
+  .postContent h2 {
+    font-size: 24px;
+  }
+
+  .postContent h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blogsContainer,
+  .postContainer {
+    padding: 12px 8px;
+  }
+
+  .header h1,
+  .postHeader h1 {
+    font-size: 24px;
+  }
+
+  .postTitle {
+    font-size: 18px;
+  }
+}
