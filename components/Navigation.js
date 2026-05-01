@@ -17,14 +17,16 @@ export default function Navigation() {
         easing: 'easeOutExpo',
       });
 
-      const handleScroll = () => {
+      const handleScroll = (e) => {
         const links = document.querySelectorAll('.nav-links a');
         const sections = document.querySelectorAll('.section');
+        const mainContent = document.querySelector('.main-content');
+        const scrollTop = mainContent?.scrollTop || window.scrollY;
 
         let current = '';
         sections.forEach((section) => {
           const sectionTop = section.offsetTop;
-          if (window.scrollY >= sectionTop - 200) {
+          if (scrollTop >= sectionTop - 200) {
             current = section.getAttribute('id');
           }
         });
@@ -37,29 +39,47 @@ export default function Navigation() {
         });
       };
 
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      const mainContent = document.querySelector('.main-content');
+      if (mainContent) {
+        mainContent.addEventListener('scroll', handleScroll);
+        return () => mainContent.removeEventListener('scroll', handleScroll);
+      } else {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }
     }
   }, []);
 
   return (
-    <nav ref={navRef} className="bg-dark-bg">
+    <nav ref={navRef} className="sidebar-nav">
       <div className="nav-container">
         <a href="#" className="nav-logo">
-          AB
+          🏠
         </a>
         <ul className="nav-links">
           <li>
-            <a href="#projects">Projects</a>
+            <a href="#projects" title="Projects">
+              <span className="icon">📁</span>
+              <span className="label">Projects</span>
+            </a>
           </li>
           <li>
-            <a href="#skills">Skills</a>
+            <a href="#skills" title="Skills">
+              <span className="icon">👤</span>
+              <span className="label">About</span>
+            </a>
           </li>
           <li>
-            <a href="#blog">Blog</a>
+            <a href="#blog" title="Blog">
+              <span className="icon">🎵</span>
+              <span className="label">Blog</span>
+            </a>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <a href="#contact" title="Contact">
+              <span className="icon">📡</span>
+              <span className="label">Contact</span>
+            </a>
           </li>
         </ul>
       </div>

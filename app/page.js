@@ -50,14 +50,16 @@ export default function Home() {
   return (
     <>
       <AnimatedBackground />
-      <main className="min-h-screen" ref={containerRef}>
+      <div className="layout-wrapper">
         <Navigation />
-        <Hero />
-        <Projects />
-        <Skills />
-        <Blog />
-        <Contact />
-      </main>
+        <main className="main-content" ref={containerRef}>
+          <Hero />
+          <Projects />
+          <Skills />
+          <Blog />
+          <Contact />
+        </main>
+      </div>
     </>
   );
 }
