@@ -7,6 +7,7 @@ import Skills from '@/components/Skills';
 import Blog from '@/components/Blog';
 import Contact from '@/components/Contact';
 import Navigation from '@/components/Navigation';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import './home.css';
 
 export default function Home() {
@@ -47,13 +48,16 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen" ref={containerRef}>
-      <Navigation />
-      <Hero />
-      <Projects />
-      <Skills />
-      <Blog />
-      <Contact />
-    </main>
+    <>
+      <AnimatedBackground />
+      <main className="min-h-screen" ref={containerRef}>
+        <Navigation />
+        <Hero />
+        <Projects />
+        <Skills />
+        <Blog />
+        <Contact />
+      </main>
+    </>
   );
 }

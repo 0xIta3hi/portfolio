@@ -3,12 +3,32 @@
   min-height: auto;
   padding: 4rem 2rem;
   margin-bottom: 2rem;
+  position: relative;
 }
 
 @media (min-width: 768px) {
   .section {
     padding: 6rem 4rem;
   }
+}
+
+/* Animated background */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gradient-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.3;
+  mix-blend-mode: screen;
 }
 
 /* Hero specific */
@@ -26,6 +46,18 @@
   font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 700;
   margin-bottom: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.hero-title span {
+  display: inline-block;
+  position: relative;
+}
+
+.hero-title span:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
 .hero-subtitle {
@@ -79,13 +111,32 @@
   padding: 2rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .project-card:hover {
   border-color: rgba(99, 102, 241, 0.5);
   background: rgba(15, 21, 53, 0.8);
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1), 0 0 20px rgba(99, 102, 241, 0.15);
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-title {
@@ -150,12 +201,29 @@
   border-radius: 0.5rem;
   text-align: center;
   transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.skill-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.3), transparent);
+  opacity: 0;
+  border-radius: 0.5rem;
+  pointer-events: none;
 }
 
 .skill-item:hover {
   border-color: rgba(99, 102, 241, 0.5);
   background: rgba(99, 102, 241, 0.1);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.skill-item:hover::after {
+  opacity: 1;
 }
 
 /* Section titles */
