@@ -1,8 +1,8 @@
-import { getAllBlogPosts } from '../../../utils/getBlogPosts';
+import { getBlogPosts } from '@/utils/mdx';
 
 export async function GET() {
   try {
-    const posts = getAllBlogPosts();
+    const posts = getBlogPosts();
     return Response.json(posts);
   } catch (error) {
     console.error('Error fetching blog posts:', error);

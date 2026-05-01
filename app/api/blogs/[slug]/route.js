@@ -1,9 +1,9 @@
-import { getBlogPostBySlug } from '../../../../utils/getBlogPosts';
+import { getBlogPost } from '@/utils/mdx';
 
 export async function GET(request, { params }) {
   try {
     const { slug } = params;
-    const post = getBlogPostBySlug(slug);
+    const post = getBlogPost(slug);
 
     if (!post) {
       return Response.json(
