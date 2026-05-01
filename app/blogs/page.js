@@ -69,6 +69,7 @@ export default function BlogsPage() {
             <Link
               key={post.slug}
               href={`/blogs/${post.slug}`}
+              passHref
               className={styles.postCard}
             >
               <h2 className={styles.postTitle}>{post.metadata.title}</h2>
@@ -85,7 +86,7 @@ export default function BlogsPage() {
         </div>
       ) : (
         <div className={styles.noResults}>
-          No blog posts found matching "{searchQuery}"
+          No blog posts found matching &quot;{searchQuery}&quot;
         </div>
       )}
     </div>

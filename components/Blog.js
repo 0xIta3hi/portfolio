@@ -40,6 +40,7 @@ export default function Blog() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
+                passHref
                 className="block p-4 border border-indigo-900/30 rounded-lg hover:border-indigo-600/50 hover:bg-indigo-950/20 transition-all"
               >
                 <h3 className="text-xl font-semibold mb-2 text-indigo-300">
